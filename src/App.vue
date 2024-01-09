@@ -1,17 +1,14 @@
 <template>
-  <div>app</div>
-  <div class="contain">
-    <svg>
-      <use xlink:href="#icon-remark"></use>
-    </svg>
-  </div>
+  <router-view></router-view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {} from 'vue'
+</script>
 
 <style lang="scss" scoped>
 .contain {
-  // background-color: #9cea49;
+  background-color: $color;
   .box {
     width: 100px;
     height: 200px;

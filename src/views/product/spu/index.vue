@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <div class="">spu</div>
 </template>
 
 <script setup lang="ts">

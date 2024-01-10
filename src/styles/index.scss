@@ -1,2 +1,26 @@
 // 引入默认清除样式
 @import 'reset.scss';
+:root {
+  --color-active: orange;
+  --el-color-primary: orange;
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: linear-gradient(
+    to right bottom,
+    rgb(239, 217, 255),
+    rgb(213, 255, 222)
+  );
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9335ff;
+  border-radius: 5px;
+}

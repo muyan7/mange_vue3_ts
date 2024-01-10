@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <div class="">数据大屏</div>
 </template>
 
 <script setup lang="ts">

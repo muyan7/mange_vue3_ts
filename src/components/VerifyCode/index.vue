@@ -110,13 +110,14 @@ const drawDot = (ctx: any) => {
 }
 
 onMounted(() => {
+  console.log(props)
   drawPic()
 })
 
 watch(
   () => props.identifyCode,
-  (val) => {
-    console.log(val)
+  () => {
+    console.log(props)
     drawPic()
   },
 )

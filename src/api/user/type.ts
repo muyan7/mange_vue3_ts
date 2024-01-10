@@ -14,10 +14,11 @@ export interface ResponseData {
   ok?: boolean
 }
 interface LoginType {
-  token: string
+  token?: string
+  message?: string
 }
 export interface LoginResponseData extends ResponseData {
-  data?: LoginType
+  data: LoginType
 }
 interface UserInfoType {
   routes: string[]

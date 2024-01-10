@@ -57,13 +57,13 @@
 <script setup lang="ts">
 import { User, Lock, Warning } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
-// import { useRouter, useRoute } from 'vue-router'
-// import { ElNotification } from 'element-plus'
-// import { getTime } from '@/utils/time'
+import { useRouter, useRoute } from 'vue-router'
+import { ElNotification } from 'element-plus'
+import { getTime } from '@/utils/time'
 import useUserStore from '@/store/modules/user.ts'
 import Identify from '@/components/VerifyCode/index.vue'
-// let $router = useRouter()
-// let $route = useRoute()
+const $router = useRouter()
+let $route = useRoute()
 let loading = ref(false)
 
 const identifyCode = ref('1234')
@@ -92,7 +92,7 @@ const loginForm = reactive({
   verifyCode: '1234',
 })
 
-const validatorUsername = (rule: any, value: any, callback: any) => {
+const validatorUsername = (_rule: any, value: any, callback: any) => {
   if (value.length === 0) {
     callback(new Error('请输入账号'))
   } else {
@@ -100,7 +100,7 @@ const validatorUsername = (rule: any, value: any, callback: any) => {
   }
 }
 
-const validatorPassword = (rule: any, value: any, callback: any) => {
+const validatorPassword = (_rule: any, value: any, callback: any) => {
   if (value.length === 0) {
     callback(new Error('请输入密码'))
   } else if (value.length < 6 || value.length > 16) {
@@ -110,7 +110,7 @@ const validatorPassword = (rule: any, value: any, callback: any) => {
   }
 }
 
-const validatorVerifyCode = (rule: any, value: any, callback: any) => {
+const validatorVerifyCode = (_rule: any, value: any, callback: any) => {
   if (value.length === 0) {
     callback(new Error('请输入验证码'))
   } else if (value.length < 4) {
@@ -141,32 +141,29 @@ const rules = {
     },
   ],
 }
-let userStore = useUserStore()
-const login = () => {
-  userStore.userLogin(loginForm)
+const userStore = useUserStore()
+const login = async () => {
+  await loginForms.value.validate()
+  loading.value = true
+  try {
+    await userStore.userLogin(loginForm)
+    let redirect: string = $route.query.redirect as string
+    $router.replace({ path: redirect || '/' })
+    // $router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登陆成功',
+      title: `Hi, ${getTime()}好`,
+    })
+    loading.value = false
+  } catch (error) {
+    loading.value = false
+    ElNotification({
+      type: 'error',
+      message: (error as Error).message,
+    })
+  }
 }
-// const login = async () => {
-//   await loginForms.value.validate()
-//   loading.value = true
-//   try {
-//     // await useStore.userLogin(loginForm)
-//     let redirect: string = $route.query.redirect as string
-//     $router.push({ path: redirect || '/' })
-//     $router.push('/')
-//     ElNotification({
-//       type: 'success',
-//       message: '登陆成功',
-//       title: `Hi, ${getTime()}好`,
-//     })
-//     loading.value = false
-//   } catch (error) {
-//     loading.value = false
-//     ElNotification({
-//       type: 'error',
-//       message: (error as Error).message,
-//     })
-//   }
-// }
 </script>
 
 <style lang="scss" scoped>

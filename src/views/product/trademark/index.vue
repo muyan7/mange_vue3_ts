@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <div class="">品牌</div>
 </template>
 
 <script setup lang="ts">

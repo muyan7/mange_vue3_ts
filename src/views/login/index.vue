@@ -148,7 +148,6 @@ const login = async () => {
     await userStore.userLogin(loginForm)
     let redirect: string = $route.query.redirect as string
     $router.replace({ path: redirect || '/' })
-    // $router.push('/')
     ElNotification({
       type: 'success',
       message: '登陆成功',

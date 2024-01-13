@@ -65,7 +65,6 @@ import Identify from '@/components/VerifyCode/index.vue'
 const $router = useRouter()
 let $route = useRoute()
 let loading = ref(false)
-
 const identifyCode = ref('1234')
 const identifyCodes = ref('1234567890abcdefjhijklinopqrsduvwxyz')
 
@@ -203,6 +202,6 @@ const login = async () => {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 :deep(.el-input-group__append, .el-input-group__prepend) {
-  // padding: 0;
+  padding: 0;
 }
 </style>

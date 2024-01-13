@@ -138,6 +138,59 @@ export const constantRoute = [
     },
   },
   {
+    path: '/table',
+    component: () => import('@/layout/index.vue'),
+    name: 'Table',
+    meta: {
+      title: '评分表',
+      hidden: false,
+      icon: 'Grid',
+    },
+    redirect: '/table/list',
+    children: [
+      {
+        path: '/table/list',
+        component: () => import('@/views/table/list/index.vue'),
+        meta: {
+          title: '列表',
+          hidden: false,
+          icon: 'Operation',
+        },
+      },
+      {
+        path: '/table/detail',
+        component: () => import('@/views/table/detail/index.vue'),
+        meta: {
+          title: '详情',
+          hidden: false,
+          icon: 'Histogram',
+        },
+      },
+    ],
+  },
+  {
+    path: '/one',
+    component: () => import('@/layout/index.vue'),
+    name: 'One',
+    meta: {
+      title: '壹',
+      hidden: false,
+      icon: 'Bell',
+    },
+    redirect: '/one/list',
+    children: [
+      {
+        path: '/one/list',
+        component: () => import('@/views/one/index.vue'),
+        meta: {
+          title: '依依',
+          hidden: false,
+          icon: 'Odometer',
+        },
+      },
+    ],
+  },
+  {
     path: '/404',
     component: () => import('@/views/404/index.vue'),
     name: '404',

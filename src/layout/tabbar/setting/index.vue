@@ -57,24 +57,28 @@ let $router = useRouter()
 let $route = useRoute()
 let userStore = useUserStore()
 let dark = ref<boolean>(false)
+// 刷新
 const updateRefsh = () => {
   layoutSettingStore.refsh = !layoutSettingStore.refsh
 }
-
+// 全屏
 const fullScreen = () => {
+  // DOM对象的一个属性，返回值是boolean值，来判断是不是全屏
   let full = document.fullscreenElement
   if (!full) {
+    // 根据文档的根节点方法requestFullscreen，实现全屏
     document.documentElement.requestFullscreen()
   } else {
+    // 退出全屏
     document.exitFullscreen()
   }
 }
-
+// 推出登录
 const logout = async () => {
   await userStore.userLogout()
-  $router.push({ path: '/login', query: { redirect: $route.path } })
+  // 获取当前退出停留的路由路径。再次登录时直接跳转到当前页面。而不是只跳到home页
+  $router.replace({ path: '/login', query: { redirect: $route.path } })
 }
-
 const color = ref('rgba(255, 69, 0, 0.68)')
 const predefineColors = ref([
   '#ff4500',

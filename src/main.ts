@@ -18,6 +18,8 @@ import router from './router'
 import globalComponents from '@/components/index'
 // 引入仓库
 import pinia from '@/store'
+// 引入鉴权
+import './permission'
 app.use(pinia)
 app.use(globalComponents)
 app.use(router)

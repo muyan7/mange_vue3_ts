@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia'
 
 // 引入接口
-import { reqLogin, reqLogOut } from '@/api/user/index'
+import { reqLogin, reqLogOut, reqUserInfo } from '@/api/user/index'
 
 // 引入数据类型
 import type { LoginFormData, LoginResponseData } from '@/api/user/type'
@@ -28,7 +28,7 @@ const userStore = defineStore('user', {
     async userLogin(data: LoginFormData) {
       const res: LoginResponseData = await reqLogin(data)
       if (res.code == 200) {
-        this.token = res.data.token as string
+        this.token = res.data as string
         SET_TOKEN('UESR_TOKEN', this.token)
         return 'ok'
       } else {
@@ -47,6 +47,17 @@ const userStore = defineStore('user', {
         // })
       } else {
         return Promise.reject(new Error(res.message))
+      }
+    },
+    // 获取用户信息
+    async userInfo() {
+      const res = await reqUserInfo()
+      if (res.code == 200) {
+        this.username = res.data.name
+        this.avatar = res.data.avatar
+        return 'ok'
+      } else {
+        return Promise.reject(new Error('获取用户信息失败'))
       }
     },
   },

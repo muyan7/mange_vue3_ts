@@ -3,14 +3,14 @@
     <div
       class="layout_slider"
       :style="{
-        width: LayOutSettingStore.isCollapse ? ' 56px' : '200px',
+        width: LayOutSettingStore.isCollapse ? ' 64px' : '200px',
       }">
       <Logo></Logo>
       <el-scrollbar>
         <el-menu
           :default-active="$route.path"
           active-text-color="var(--color-active)"
-          background-color="aqua"
+          background-color="#86ead0"
           text-color="#fff"
           :unique-opened="true"
           :collapse="LayOutSettingStore.isCollapse"
@@ -22,9 +22,9 @@
     <div
       class="layout_taber"
       :style="{
-        left: !LayOutSettingStore.isCollapse ? '200px' : '56px',
+        left: !LayOutSettingStore.isCollapse ? '200px' : '64px',
         width: LayOutSettingStore.isCollapse
-          ? 'calc(100% - 56px)'
+          ? 'calc(100% - 64px)'
           : 'calc(100% - 200px)',
       }">
       <Tabbar></Tabbar>
@@ -32,9 +32,9 @@
     <div
       class="layout_main"
       :style="{
-        left: !LayOutSettingStore.isCollapse ? '200px' : '56px',
+        left: !LayOutSettingStore.isCollapse ? '200px' : '64px',
         width: LayOutSettingStore.isCollapse
-          ? 'calc(100% - 56px)'
+          ? 'calc(100% - 64px)'
           : 'calc(100% - 200px)',
       }">
       <Main></Main>
@@ -44,18 +44,14 @@
 
 <script setup lang="ts">
 import Logo from './logo/index.vue'
-// import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
 import Tabbar from './tabbar/index.vue'
 import Main from './main/index.vue'
 import useLayOutSettingStore from '@/store/modules/setting'
-// import useUserStore from '@/store/modules/user.ts'
 import useUserStore from '@/store/modules/user.ts'
 import { useRoute } from 'vue-router'
-
 let userStore = useUserStore()
 let $route = useRoute()
-
 let LayOutSettingStore = useLayOutSettingStore()
 </script>
 

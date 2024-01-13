@@ -2,8 +2,6 @@
   <router-view></router-view>
 </template>
 
-<script setup lang="ts">
-import {} from 'vue'
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>

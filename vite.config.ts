@@ -9,6 +9,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 export default ({ mode }: ConfigEnv): UserConfigExport => {
   const env = loadEnv(mode, process.cwd())
   return {
+    base: './',
     plugins: [
       vue(),
       createSvgIconsPlugin({
